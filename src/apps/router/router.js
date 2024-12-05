@@ -5,6 +5,7 @@ const schemaValidator = require('../middleware/schemaValidator')
 const userSchema = require('../../schema/create.user.schema.json')
 const AuthenticationController = require('../controllers/AuthenticationController')
 const AuthSchema = require('../../schema/auth.schema.json')
+const UpdateSchema = require('../../schema/update.schema.json');
 
 const AuthenticationMiddleware = require('../middleware/authentication')
 
@@ -17,7 +18,9 @@ router.post('/auth' , schemaValidator(AuthSchema),  AuthenticationController.aut
 router.use(AuthenticationMiddleware);
 
 router.get('/health', (req, res)=>{
-    return res.send({messege:"Conectado com sucesso"})
+    return res.send({messege:'Conectado com sucesso !'})
 })
+router.put('/user',  UserController.update);
 
 module.exports = router;
+//schemaValidator(UpdateSchema),
