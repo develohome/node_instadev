@@ -65,7 +65,30 @@ class UserController{
          }
         );
         return res.status(200).json({message:'Atualizado com sucesso'});
-     }
+    }
+
+    async delete(req, res){
+        const usetToDelete = await UserModel.findOne({
+            where:{
+                id: req.userId
+            }
+        })
+
+        if(!usetToDelete){
+            return res.status(400).json({message:'Não existe esse usuário'});
+        }
+
+        await UserModel.destroy({
+            where:{
+                id: req.userId
+            }
+        })
+        return res.status(200).json({message: 'Usuário deletado'})
+    }
+
+    async userProfile(req, res){
+        
+    }
 }
 
 module.exports = new UserController();

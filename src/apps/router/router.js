@@ -21,6 +21,8 @@ router.get('/health', (req, res)=>{
     return res.send({messege:'Conectado com sucesso !'})
 })
 router.put('/user',  UserController.update);
+router.delete('/user',  UserController.delete);
+router.get('/user-profile', UserController.userProfile);
 
 module.exports = router;
 //schemaValidator(UpdateSchema),
