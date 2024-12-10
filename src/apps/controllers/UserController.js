@@ -87,7 +87,18 @@ class UserController{
     }
 
     async userProfile(req, res){
-        
+        const user = await UserModel.findOne({
+            attributes:['id', 'name', 'user_name', 'email', 'avatar', 'bio', 'gender'],
+            where:{
+                id:req.userId
+            }
+        })
+
+        if(!user){
+            return res.status(400).json({message: 'Usuário não localizado !'})
+        }
+        //const {id, name, user_name, email, avatar, bio, gender} = user;
+        return res.status(400).json({user})
     }
 }
 
